@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿/*using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +8,6 @@ public class Player_movement : MonoBehaviour
     public bool facingRight = true;
     public int playerJumpPower = 1250;
     private float moveX;
-    public bool isGrounded = true;
     public bool onPlatform = false;
 
     // Update is called once per frame
@@ -78,3 +77,4 @@ public class Player_movement : MonoBehaviour
     }
 
 }
+*/
