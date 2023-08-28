@@ -5,8 +5,8 @@ using UnityEngine;
 public class Player_Movement2 : MonoBehaviour
 {
     private float horizontal;
-    private float Speed = 8f;
-    private float jumpingPower = 16f;
+    public float Speed = 8f;
+    public float jumpingPower = 6f;
     private bool isFacingRight = true;
 
     [SerializeField] private Rigidbody2D rb; //Player Rigidbody
@@ -69,6 +69,5 @@ public class Player_Movement2 : MonoBehaviour
     private bool IsGrounded()
     {
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
-
     }
 }
