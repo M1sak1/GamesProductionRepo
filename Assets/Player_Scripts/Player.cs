@@ -4,9 +4,15 @@ using UnityEngine;
 
 	public class Player : MonoBehaviour
 	{
-		public void KillPlayer()
+	[SerializeField]
+	Vector3 _startPosition;
+
+	public void Awake()
+	{
+		GameManager.Instance.SetStartPosition(_startPosition);
+	}
+	public void KillPlayer()
 		{
-			Debug.Log("AHHHHH");
 			transform.position = GameManager.Instance.StartPosition;
 		}
 	}

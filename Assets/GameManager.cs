@@ -36,14 +36,15 @@ public class GameManager : MonoBehaviour
 
 	public Vector3 StartPosition { get; private  set; }
 	//Used for checkpointing 
+	
 	public void SetStartPosition(Vector3 position){
 		StartPosition = position;
 	}
-
+	/*
 	public void KillPlayer(){
 		transform.position = GameManager.Instance.StartPosition;
 	}
-
+	*/
 
 }
 							

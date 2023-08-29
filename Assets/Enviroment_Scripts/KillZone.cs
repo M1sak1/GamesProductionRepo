@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class KillZone : MonoBehaviour
 {
-	public bool init = false;
-    void OnTriggerEnter(Collider other){
-		init = !init;
+    void OnTriggerEnter2D(Collider2D other){
 		if (other.tag == "Player")
 		{
 			other.gameObject.GetComponent<Player>().KillPlayer();
