@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Player_Movement2 : MonoBehaviour
 {
-    private float horizontal;
+    public float horizontal;
     public float Speed = 8f;
     public float jumpingPower = 6f;
-    private bool isFacingRight = true;
+    public bool isFacingRight = true;
 
     [SerializeField] private Rigidbody2D rb; //Player Rigidbody
     [SerializeField] private Transform groundCheck; //PlayersSubObject at feet's Current location
@@ -25,12 +25,12 @@ public class Player_Movement2 : MonoBehaviour
         //gets the raw input of the horizontal input axis (a -1 , d 1)
         horizontal = Input.GetAxisRaw("Horizontal");
         bool Moving = mAnimator.GetCurrentAnimatorStateInfo(0).IsName("Moving");
-        if (horizontal == 0 && Moving == true)
+        if (horizontal == 0)
         {
             mAnimator.SetBool("Moving", false); 
         }
         
-        else if(horizontal != 0 && Moving == false)
+        else if(horizontal != 0)
         {
             mAnimator.SetBool("Moving", true);
         }
