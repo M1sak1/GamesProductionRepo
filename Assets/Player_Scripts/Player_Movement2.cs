@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//https://youtu.be/K1xZ-rycYY8 - Player Movement
 public class Player_Movement2 : MonoBehaviour
 {
+
     private float horizontal;
     public float Speed = 8f;
     public float jumpingPower = 6f;
@@ -17,7 +19,7 @@ public class Player_Movement2 : MonoBehaviour
 
     private void Start()
     {
-        mAnimator = GetComponent<Animator>();
+        mAnimator = GetComponent<Animator>(); //used for the animations
     }
     // Update is called once per frame
     void Update()
