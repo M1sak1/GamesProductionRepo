@@ -8,10 +8,14 @@ public class Player_Movement2 : MonoBehaviour
     public float Speed = 8f;
     public float jumpingPower = 6f;
     private bool isFacingRight = true;
+    public bool isWallsliding = false;
+    public float wallslidingSpeed = 2f;
 
     [SerializeField] private Rigidbody2D rb; //Player Rigidbody
     [SerializeField] private Transform groundCheck; //PlayersSubObject at feet's Current location
     [SerializeField] private LayerMask groundLayer; //Detecting a layer of the object they are currently on
+    [SerializeField] private Transform wallCheck;
+    [SerializeField] private LayerMask wallLayer;
 
     private Animator mAnimator;
 
@@ -47,6 +51,9 @@ public class Player_Movement2 : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
         }
         Flip();
+
+        WallSlide(); //checks if wallsliding
+
     }
     //Runs every time something changes not on every frame
     void FixedUpdate()
@@ -63,6 +70,25 @@ public class Player_Movement2 : MonoBehaviour
             Vector3 localScale = transform.localScale; //idk
             localScale.x *= -1f; //idk
             transform.localScale = localScale; //idk
+        }
+    }
+
+    private bool IsWalled()
+    {
+        return Physics2D.OverlapCircle(wallCheck.position, 0.2f, wallLayer);
+    }
+    private void WallSlide()
+    {
+        if(IsWalled() && !IsGrounded() && horizontal !=0f)
+        {
+			mAnimator.SetBool("walled", true);
+			isWallsliding = true;
+            rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallslidingSpeed, float.MaxValue));
+        }
+        else
+        {
+			mAnimator.SetBool("walled", false); 
+			isWallsliding = false;
         }
     }
 
