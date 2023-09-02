@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 
 //https://youtu.be/K1xZ-rycYY8 - Player Movement
@@ -10,8 +12,18 @@ public class Player_Movement2 : MonoBehaviour
     public float Speed = 8f;
     public float jumpingPower = 6f;
     private bool isFacingRight = true;
-    public bool isWallsliding = false;
+	//wallsliding mgmt
+    private bool isWallsliding = false;
     public float wallslidingSpeed = 2f;
+	//walljumping mgmt
+	private bool isWallJumping = false;
+	public float wallJumpDriection = 0.2f;
+	public float counterWallJump = 4;
+	public float wallJumpDuration = 0.4f;
+	public Vector2 wallJumpingPower = new Vector2 (8f, 16f);
+
+
+
 
     [SerializeField] private Rigidbody2D rb; //Player Rigidbody
     [SerializeField] private Transform groundCheck; //PlayersSubObject at feet's Current location
@@ -52,15 +64,22 @@ public class Player_Movement2 : MonoBehaviour
             //as this is meant to decrease the jumping power its timed by a half
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
         }
-        Flip();
+
+		if (!isWallJumping)
+		{
+			Flip();
+		}
 
         WallSlide(); //checks if wallsliding
+		WallJump(); //allows for walljumping
 
     }
     //Runs every time something changes not on every frame
     void FixedUpdate()
     {
-        rb.velocity = new Vector2(horizontal * Speed, rb.velocity.y);
+		if(!isWallJumping){
+			rb.velocity = new Vector2(horizontal * Speed, rb.velocity.y);
+		}
     }
     //Used to flip the players sprite when moving left or right
     private void Flip()
@@ -79,6 +98,7 @@ public class Player_Movement2 : MonoBehaviour
     {
         return Physics2D.OverlapCircle(wallCheck.position, 0.2f, wallLayer);
     }
+
     private void WallSlide()
     {
         if(IsWalled() && !IsGrounded() && horizontal !=0f)
@@ -93,6 +113,41 @@ public class Player_Movement2 : MonoBehaviour
 			isWallsliding = false;
         }
     }
+
+	private void WallJump(){
+		//checking if it is possible
+		if(isWallsliding){
+			isWallJumping = false;
+			wallJumpDriection = -transform.localScale.x;
+			counterWallJump = wallJumpDuration;
+			CancelInvoke(nameof(StopWallJumping));
+		}
+		else {
+			counterWallJump -= Time.deltaTime;
+		}
+		
+		//acutally jumping
+		if(Input.GetButtonDown("Jump") && counterWallJump > 0f) { 
+			isWallJumping = true;
+			rb.velocity = new Vector2(wallJumpDriection * wallJumpingPower.x, wallJumpingPower.y);
+			counterWallJump = 0f;
+			////flipping the player
+			if (transform.localScale.x != wallJumpDriection)
+			{
+				isFacingRight = !isFacingRight;
+				Vector3 localscale = transform.localScale;
+				localscale.x *= -1f;
+				transform.localScale = localscale;
+			}
+		}
+		//Flip();
+
+		Invoke(nameof(StopWallJumping), wallJumpDuration); // calls the stop walljumping after a delay (walljumpduration)
+	}
+
+	private void StopWallJumping(){
+		isWallJumping = false;
+	}
 
     private bool IsGrounded()
     {
