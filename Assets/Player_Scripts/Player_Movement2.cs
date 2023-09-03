@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
@@ -7,8 +8,8 @@ using UnityEngine;
 //https://youtu.be/K1xZ-rycYY8 - Player Movement
 public class Player_Movement2 : MonoBehaviour
 {
-
-    private float horizontal;
+    public bool moveable = true;
+	private float horizontal;
     public float Speed = 8f;
     public float jumpingPower = 6f;
     private bool isFacingRight = true;
@@ -40,39 +41,42 @@ public class Player_Movement2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //gets the raw input of the horizontal input axis (a -1 , d 1)
+         //gets the raw input of the horizontal input axis (a -1 , d 1)
         horizontal = Input.GetAxisRaw("Horizontal");
+        if(moveable == false)
+        {
+            horizontal = 0;
+        }
 
         bool Moving = mAnimator.GetCurrentAnimatorStateInfo(0).IsName("Moving");
         if (horizontal == 0)
         {
-            mAnimator.SetBool("Moving", false); 
+            mAnimator.SetBool("Moving", false);
         }
-        else if(horizontal != 0)
+        else if (horizontal != 0)
         {
             mAnimator.SetBool("Moving", true);
         }
         //How the player jumps 
-        if(Input.GetButtonDown("Jump") && IsGrounded())
+        if (Input.GetButtonDown("Jump") && IsGrounded())
         {
             //takes the rigidbodys velocity and changes it based on the current velocity and the paramater jumping power 
             rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
         }
         //to create a smaller jump if the button is released 
-        if(Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
+        if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
         {
             //as this is meant to decrease the jumping power its timed by a half
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
         }
 
-		if (!isWallJumping)
-		{
-			Flip();
-		}
+        if (!isWallJumping)
+        {
+            Flip();
+        }
 
         WallSlide(); //checks if wallsliding
-		WallJump(); //allows for walljumping
-
+        WallJump(); //allows for walljumping
     }
     //Runs every time something changes not on every frame
     void FixedUpdate()
