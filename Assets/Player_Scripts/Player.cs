@@ -2,10 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 //
-	public class Player : MonoBehaviour
+public class Player : MonoBehaviour
 	{
+	private Animator animator;
 	[SerializeField]
 	Vector3 _startPosition;
+	private void Start ()
+	{
+		animator = GetComponent<Animator>();
+	}
 
 	public void Awake()
 	{
@@ -13,8 +18,14 @@ using UnityEngine;
 	}
 	//https://bergstrand-niklas.medium.com/setting-up-a-simple-game-manager-in-unity-24b080e9516c
 	public void KillPlayer()
-		{
-			transform.position = GameManager.Instance.StartPosition; //sends the player back to the last updated checkpoint/startpositon 
-		}
+	{
+		animator.SetBool("isDead", true);
+		Invoke(nameof(murder), 0.6f);
 	}
+	private void murder()
+	{
+		transform.position = GameManager.Instance.StartPosition; //sends the player back to the last updated checkpoint/startpositon 
+		animator.SetBool("isDead", false);
+	}
+}
 
