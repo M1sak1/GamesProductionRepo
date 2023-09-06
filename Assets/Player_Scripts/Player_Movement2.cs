@@ -88,6 +88,9 @@ public class Player_Movement2 : MonoBehaviour
     //Used to flip the players sprite when moving left or right
     private void Flip()
     {
+        //disabling walljumping when the player moves off the wall
+        mAnimator.SetBool("walled", false);
+        isWallJumping = false;
         //checks if they have changed their movement and need to be flipped
         if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f) 
         {
