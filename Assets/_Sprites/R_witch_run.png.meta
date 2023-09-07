@@ -113,13 +113,13 @@ TextureImporter:
       name: R_witch_run_0
       rect:
         serializedVersion: 2
-        x: 7
-        y: 462
-        width: 28
-        height: 43
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 2, z: 0, w: 0}
+        x: 0
+        y: 464
+        width: 31
+        height: 41
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -134,12 +134,12 @@ TextureImporter:
       name: R_witch_run_1
       rect:
         serializedVersion: 2
-        x: 3
+        x: 2
         y: 400
-        width: 30
-        height: 40
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        width: 31
+        height: 41
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -155,13 +155,13 @@ TextureImporter:
       name: R_witch_run_2
       rect:
         serializedVersion: 2
-        x: 7
-        y: 334
-        width: 26
+        x: 2
+        y: 336
+        width: 31
         height: 45
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 2, z: 0, w: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -176,12 +176,12 @@ TextureImporter:
       name: R_witch_run_3
       rect:
         serializedVersion: 2
-        x: 7
+        x: 3
         y: 272
-        width: 27
-        height: 43
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        width: 31
+        height: 45
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -197,13 +197,13 @@ TextureImporter:
       name: R_witch_run_4
       rect:
         serializedVersion: 2
-        x: 7
+        x: 1
         y: 206
-        width: 25
+        width: 31
         height: 41
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 2, z: 0, w: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -218,12 +218,12 @@ TextureImporter:
       name: R_witch_run_5
       rect:
         serializedVersion: 2
-        x: 3
+        x: 2
         y: 144
-        width: 30
+        width: 31
         height: 41
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -239,13 +239,13 @@ TextureImporter:
       name: R_witch_run_6
       rect:
         serializedVersion: 2
-        x: 7
-        y: 78
-        width: 27
+        x: 3
+        y: 80
+        width: 31
         height: 45
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 2, z: 0, w: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -260,12 +260,12 @@ TextureImporter:
       name: R_witch_run_7
       rect:
         serializedVersion: 2
-        x: 7
+        x: 3
         y: 16
-        width: 28
+        width: 31
         height: 41
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
