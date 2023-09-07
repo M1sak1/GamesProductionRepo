@@ -40,7 +40,8 @@ public class Player_Movement2 : MonoBehaviour
     }
     // Update is called once per frame
     void Update()
-    {
+    { 
+        // Debug.Log(isWallsliding);   fuck it idk why you can wall jump tech its not saying your sliding while in mid air so idk  guess its a feature
          //gets the raw input of the horizontal input axis (a -1 , d 1)
         horizontal = Input.GetAxisRaw("Horizontal");
         if(moveable == false)
