@@ -70,8 +70,14 @@ public class Player_Movement2 : MonoBehaviour
             //as this is meant to decrease the jumping power its timed by a half
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
         }
-
-        if (!isWallJumping)
+        if (Input.GetButtonDown("Fire1")){
+            mAnimator.SetBool("isDashing", true);
+        }
+		if (Input.GetButtonUp("Fire1"))
+		{
+			mAnimator.SetBool("isDashing", false);
+		}
+		if (!isWallJumping)
         {
             Flip();
         }

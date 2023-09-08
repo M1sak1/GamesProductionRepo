@@ -23,7 +23,7 @@ public class Player : MonoBehaviour
 	public void KillPlayer()
 	{ 
 		animator.SetBool("isDead", true);
-		Invoke(nameof(murder), 0.6f);
+		Invoke(nameof(murder), 0.30f);
 	}
 	private void murder()
 	{
