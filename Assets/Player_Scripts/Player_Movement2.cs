@@ -10,6 +10,7 @@ public class Player_Movement2 : MonoBehaviour
 {
     public bool moveable = true;
 	private float horizontal;
+	private float vertical;
     public float Speed = 8f;
     public float jumpingPower = 6f;
     private bool isFacingRight = true;
@@ -44,6 +45,7 @@ public class Player_Movement2 : MonoBehaviour
         // Debug.Log(isWallsliding);   fuck it idk why you can wall jump tech its not saying your sliding while in mid air so idk  guess its a feature
          //gets the raw input of the horizontal input axis (a -1 , d 1)
         horizontal = Input.GetAxisRaw("Horizontal");
+		vertical = rb.velocity.y;
         if(moveable == false)
         {
             horizontal = 0;
@@ -115,7 +117,7 @@ public class Player_Movement2 : MonoBehaviour
 
     private void WallSlide()
     {
-        if(IsWalled() && !IsGrounded() && horizontal !=0f)
+        if(IsWalled() && vertical < 0f)
         {
 			mAnimator.SetBool("walled", true);
 			isWallsliding = true;
