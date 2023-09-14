@@ -4537,13 +4537,14 @@ MonoBehaviour:
   moveable: 1
   Speed: 3
   jumpingPower: 9
-  gravity: 3
+  gravity: 2
   wallslidingSpeed: 2
-  wallJumpDriection: 0.2
+  wallJumpDriection: 0.001
   counterWallJump: 4
   wallJumpDuration: 0.4
   wallJumpingPower: {x: 5, y: 8}
-  DashPower: 10
+  DashPower: 20
+  DashDuration: 0.2
   isDashing: 0
   rb: {fileID: 1163434692}
   groundCheck: {fileID: 1890689114}

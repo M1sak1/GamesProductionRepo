@@ -25,6 +25,7 @@ public class Player_Movement2 : MonoBehaviour
 	public Vector2 wallJumpingPower = new Vector2 (8f, 16f);
     //Dashing
     public float DashPower = 10;
+    public float DashDuration = 0.5f;
     public bool isDashing = false;
 
 
@@ -78,7 +79,7 @@ public class Player_Movement2 : MonoBehaviour
 		{
             DashPrime();
         }
-		if (!isWallJumping)
+		if (!isWallJumping && !isDashing)
         {
             Flip();
         }
@@ -89,7 +90,7 @@ public class Player_Movement2 : MonoBehaviour
     //Runs every time something changes not on every frame
     void FixedUpdate()
     {
-		if(!isWallJumping){
+		if(!isWallJumping && !isDashing){
 			rb.velocity = new Vector2(horizontal * Speed, rb.velocity.y);
 		}
     }
@@ -169,13 +170,14 @@ public class Player_Movement2 : MonoBehaviour
         rb.gravityScale = 0f;
         Debug.Log(transform.localScale.x * DashPower);
         rb.velocity = new Vector2 (transform.localScale.x * DashPower, 0); // the dash itself
-		Invoke(nameof(DashExit), 2f);
+		Invoke(nameof(DashExit), DashDuration);
 	}
 	private void DashExit()
 	{
 		rb.gravityScale = gravity;
 		isDashing = false;
 		mAnimator.SetBool("isDashing", false);
+        rb.velocity = new Vector2(0,0);
 	}
 	private bool IsGrounded()
     {
