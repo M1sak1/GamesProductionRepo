@@ -13,6 +13,7 @@ public class Player_Movement2 : MonoBehaviour
     public float Speed = 8f;
     public float jumpingPower = 6f;
     private bool isFacingRight = true;
+    public float gravity = 3f;
 	//wallsliding mgmt
     private bool isWallsliding = false;
     public float wallslidingSpeed = 2f;
@@ -22,6 +23,9 @@ public class Player_Movement2 : MonoBehaviour
 	public float counterWallJump = 4;
 	public float wallJumpDuration = 0.4f;
 	public Vector2 wallJumpingPower = new Vector2 (8f, 16f);
+    //Dashing
+    public float DashPower = 10;
+    public bool isDashing = false;
 
 
 
@@ -50,33 +54,30 @@ public class Player_Movement2 : MonoBehaviour
         }
 
         bool Moving = mAnimator.GetCurrentAnimatorStateInfo(0).IsName("Moving");
-        if (horizontal == 0)
+        if (horizontal == 0 && !isDashing)
         {
             mAnimator.SetBool("Moving", false);
         }
-        else if (horizontal != 0)
+        else if (horizontal != 0 && !isDashing)
         {
             mAnimator.SetBool("Moving", true);
         }
         //How the player jumps 
-        if (Input.GetButtonDown("Jump") && IsGrounded())
+        if (Input.GetButtonDown("Jump") && IsGrounded() && !isDashing)
         {
             //takes the rigidbodys velocity and changes it based on the current velocity and the paramater jumping power 
             rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
         }
         //to create a smaller jump if the button is released 
-        if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
+        if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f && !isDashing)
         {
             //as this is meant to decrease the jumping power its timed by a half
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
         }
-        if (Input.GetButtonDown("Fire1")){
-            mAnimator.SetBool("isDashing", true);
-        }
-		if (Input.GetButtonUp("Fire1"))
+        if (Input.GetButtonDown("Fire1") && !isDashing)
 		{
-			mAnimator.SetBool("isDashing", false);
-		}
+            DashPrime();
+        }
 		if (!isWallJumping)
         {
             Flip();
@@ -158,12 +159,25 @@ public class Player_Movement2 : MonoBehaviour
 
 		Invoke(nameof(StopWallJumping), wallJumpDuration); // calls the stop walljumping after a delay (walljumpduration)
 	}
-
 	private void StopWallJumping(){
 		isWallJumping = false;
 	}
-
-    private bool IsGrounded()
+	private void DashPrime()
+	{
+        isDashing = true;
+		mAnimator.SetBool("isDashing", true);
+        rb.gravityScale = 0f;
+        Debug.Log(transform.localScale.x * DashPower);
+        rb.velocity = new Vector2 (transform.localScale.x * DashPower, 0); // the dash itself
+		Invoke(nameof(DashExit), 2f);
+	}
+	private void DashExit()
+	{
+		rb.gravityScale = gravity;
+		isDashing = false;
+		mAnimator.SetBool("isDashing", false);
+	}
+	private bool IsGrounded()
     {
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
     }
