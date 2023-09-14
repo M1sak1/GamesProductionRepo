@@ -20,9 +20,9 @@ public class Player_Movement2 : MonoBehaviour
 	//walljumping mgmt
 	private bool isWallJumping = false;
 	public float wallJumpDriection = 0.2f;
-    public float counterWallJump;
+	public float counterWallJump = 4;
 	public float wallJumpDuration = 0.4f;
-	public Vector2 wallJumpingPower = new Vector2 (4, 8);
+	public Vector2 wallJumpingPower = new Vector2 (8f, 16f);
 
 
 
@@ -41,10 +41,9 @@ public class Player_Movement2 : MonoBehaviour
     }
     // Update is called once per frame
     void Update()
-    {
+    { 
         // Debug.Log(isWallsliding);   fuck it idk why you can wall jump tech its not saying your sliding while in mid air so idk  guess its a feature
-        //gets the raw input of the horizontal input axis (a -1 , d 1)
-        //Debug.Log(IsGrounded());
+         //gets the raw input of the horizontal input axis (a -1 , d 1)
         horizontal = Input.GetAxisRaw("Horizontal");
 		vertical = rb.velocity.y;
         if(moveable == false)
@@ -64,7 +63,6 @@ public class Player_Movement2 : MonoBehaviour
         //How the player jumps 
         if (Input.GetButtonDown("Jump") && IsGrounded())
         {
-            Debug.Log("NormalJump");
             //takes the rigidbodys velocity and changes it based on the current velocity and the paramater jumping power 
             rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
         }
@@ -85,8 +83,9 @@ public class Player_Movement2 : MonoBehaviour
         {
             Flip();
         }
-		WallJump(); //allows for walljumping
-		WallSlide(); //checks if wallsliding
+
+        WallSlide(); //checks if wallsliding
+        WallJump(); //allows for walljumping
     }
     //Runs every time something changes not on every frame
     void FixedUpdate()
@@ -129,12 +128,11 @@ public class Player_Movement2 : MonoBehaviour
 			mAnimator.SetBool("walled", false); 
 			isWallsliding = false;
         }
-	}
+    }
 
 	private void WallJump(){
 		//checking if it is possible
-		if (isWallsliding){
-            Debug.Log("slidin'");
+		if(isWallsliding){
 			isWallJumping = false;
 			wallJumpDriection = -transform.localScale.x;
 			counterWallJump = wallJumpDuration;
@@ -143,29 +141,27 @@ public class Player_Movement2 : MonoBehaviour
 		else {
 			counterWallJump -= Time.deltaTime;
 		}
-        //Debug.Log(counterWallJump);
+		
 		//acutally jumping
-		if(Input.GetButtonDown("Jump") && counterWallJump > 0) {
-            Debug.Log("wallJumpin'");
-            Debug.Log(wallJumpDriection);
+		if(Input.GetButtonDown("Jump") && counterWallJump > 0f) { 
 			isWallJumping = true;
 			rb.velocity = new Vector2(wallJumpDriection * wallJumpingPower.x, wallJumpingPower.y);
 			counterWallJump = 0f;
 			////flipping the player
 			if (transform.localScale.x != wallJumpDriection)
 			{
-                Flip();
+				isFacingRight = !isFacingRight;
+				Vector3 localscale = transform.localScale;
+				localscale.x *= -1f;
+				transform.localScale = localscale;
 			}
 		}
-        //Flip();
-        if (isWallsliding)  //now it called only if needed
-        {
-			Invoke(nameof(StopWallJumping), wallJumpDuration); // calls the stop walljumping after a delay (walljumpduration)
-		}
+		//Flip();
+
+		Invoke(nameof(StopWallJumping), wallJumpDuration); // calls the stop walljumping after a delay (walljumpduration)
 	}
 
 	private void StopWallJumping(){
-        Debug.Log("GGHJG");
 		isWallJumping = false;
 	}
 
