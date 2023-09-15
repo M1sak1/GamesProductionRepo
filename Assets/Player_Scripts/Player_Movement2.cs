@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 //https://youtu.be/K1xZ-rycYY8 - Player Movement
 public class Player_Movement2 : MonoBehaviour
@@ -27,7 +28,8 @@ public class Player_Movement2 : MonoBehaviour
     public float DashPower = 10;
     public float DashDuration = 0.5f;
     public bool isDashing = false;
-
+    public int DashCounter = 1;
+    public int maxDashes;
 
 
 
@@ -38,22 +40,29 @@ public class Player_Movement2 : MonoBehaviour
     [SerializeField] private LayerMask wallLayer;
 
     private Animator mAnimator;
+    private SpriteRenderer mSpriteRend;
 
     private void Start()
     {
-        mAnimator = GetComponent<Animator>(); //used for the animations
+        maxDashes = DashCounter;    //setting the maximum amount of dashes per jump for the player
+		mAnimator = GetComponent<Animator>(); //used for the animations
+        mSpriteRend = GetComponent<SpriteRenderer>(); //only touch this in verry spesific cases. !!!
     }
     // Update is called once per frame
     void Update()
-    { 
+    {
         // Debug.Log(isWallsliding);   fuck it idk why you can wall jump tech its not saying your sliding while in mid air so idk  guess its a feature
-         //gets the raw input of the horizontal input axis (a -1 , d 1)
+        //gets the raw input of the horizontal input axis (a -1 , d 1)       
         horizontal = Input.GetAxisRaw("Horizontal");
         if(moveable == false)
         {
             horizontal = 0;
         }
-
+        //maintaining Dashes
+        if (IsGrounded() )
+        {
+            DashCounter = maxDashes;
+        }
         bool Moving = mAnimator.GetCurrentAnimatorStateInfo(0).IsName("Moving");
         if (horizontal == 0 && !isDashing)
         {
@@ -75,15 +84,15 @@ public class Player_Movement2 : MonoBehaviour
             //as this is meant to decrease the jumping power its timed by a half
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
         }
-        if (Input.GetButtonDown("Fire1") && !isDashing)
+        if (Input.GetButtonDown("Fire1") && !isDashing && DashCounter > 0)
 		{
+            DashCounter--;
             DashPrime();
         }
-		if (!isWallJumping && !isDashing)
+		if (!isWallJumping && !isWallsliding && !isDashing)
         {
             Flip();
         }
-
         WallSlide(); //checks if wallsliding
         WallJump(); //allows for walljumping
     }
@@ -97,20 +106,30 @@ public class Player_Movement2 : MonoBehaviour
     //Used to flip the players sprite when moving left or right
     private void Flip()
     {
-        //disabling walljumping when the player moves off the wall
-        mAnimator.SetBool("walled", false);
-        isWallJumping = false;
         //checks if they have changed their movement and need to be flipped
         if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f) 
         {
-            isFacingRight = !isFacingRight; //flips the variable 
-            Vector3 localScale = transform.localScale; //idk
-            localScale.x *= -1f; //idk
-            transform.localScale = localScale; //idk
+            isFacingRight = !isFacingRight;
+            //physically flips the sprite
+            Vector3 localScale = transform.localScale;
+            localScale.x *= -1f;
+            transform.localScale = localScale;
         }
     }
+    //dangerious 
+	private void inverseflip()
+	{
+		if (isFacingRight && horizontal > 0f || !isFacingRight && horizontal < 0f)
+		{
+			isFacingRight = !isFacingRight;
+			//physically flips the sprite
+			Vector3 localScale = transform.localScale;
+			localScale.x *= -1f;
+			transform.localScale = localScale;
+		}
+	}
 
-    private bool IsWalled()
+	private bool IsWalled()
     {
         return Physics2D.OverlapCircle(wallCheck.position, 0.2f, wallLayer);
     }
@@ -119,14 +138,20 @@ public class Player_Movement2 : MonoBehaviour
     {
         if(IsWalled() && !IsGrounded() && horizontal !=0f)
         {
+            inverseflip();
+		   //wallsiding
 			mAnimator.SetBool("walled", true);
 			isWallsliding = true;
             rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallslidingSpeed, float.MaxValue));
         }
         else
         {
-			mAnimator.SetBool("walled", false); 
-			isWallsliding = false;
+            if (IsGrounded() && isWallsliding || !IsWalled() && isWallsliding)
+            {
+				mAnimator.SetBool("walled", false);
+                isWallsliding = false;
+				inverseflip();
+			}
         }
     }
 
@@ -145,9 +170,9 @@ public class Player_Movement2 : MonoBehaviour
 		//acutally jumping
 		if(Input.GetButtonDown("Jump") && counterWallJump > 0f) { 
 			isWallJumping = true;
+
 			rb.velocity = new Vector2(wallJumpDriection * wallJumpingPower.x, wallJumpingPower.y);
 			counterWallJump = 0f;
-			////flipping the player
 			if (transform.localScale.x != wallJumpDriection)
 			{
 				isFacingRight = !isFacingRight;
@@ -165,20 +190,32 @@ public class Player_Movement2 : MonoBehaviour
 	}
 	private void DashPrime()
 	{
-        isDashing = true;
-		mAnimator.SetBool("isDashing", true);
-        rb.gravityScale = 0f;
-        Debug.Log(transform.localScale.x * DashPower);
-        rb.velocity = new Vector2 (transform.localScale.x * DashPower, 0); // the dash itself
-		Invoke(nameof(DashExit), DashDuration);
-	}
+        if (!isDashing)
+        {
+            var dir = transform.localScale.x;
+			if (isWallsliding)
+			{
+				inverseflip();
+				dir = -dir;
+			}
+			isDashing = true;
+            mAnimator.SetBool("isDashing", true);
+            rb.gravityScale = 0f;
+            Debug.Log("Starting a dash");
+            rb.velocity = new Vector2(dir * DashPower, 0); // the dash itself
+            Invoke(nameof(DashExit), DashDuration + 0.2f);
+        }
+    }
 	private void DashExit()
 	{
 		rb.gravityScale = gravity;
-		isDashing = false;
+        Debug.Log("is Dashing Exit");
+        //mAnimator.ResetTrigger("isDashing");
 		mAnimator.SetBool("isDashing", false);
-        rb.velocity = new Vector2(0,0);
+        rb.velocity = new Vector2(0, 0);
+        isDashing = false;
 	}
+
 	private bool IsGrounded()
     {
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);

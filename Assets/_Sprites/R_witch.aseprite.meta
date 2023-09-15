@@ -1803,7 +1803,7 @@ ScriptedImporter:
     - name: R_witch_Frame_52
       frameIndex: 52
       cellRect:
-        x: 32
+        x: 34
         y: 7
         width: 18
         height: 46
