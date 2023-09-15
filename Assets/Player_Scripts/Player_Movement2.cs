@@ -156,8 +156,8 @@ public class Player_Movement2 : MonoBehaviour
     }
 
 	private void WallJump(){
-		//checking if it is possible
-		if(isWallsliding){
+        //checking if it is possible
+        if (isWallsliding && !isWallJumping){
 			isWallJumping = false;
 			wallJumpDriection = -transform.localScale.x;
 			counterWallJump = wallJumpDuration;
@@ -166,20 +166,13 @@ public class Player_Movement2 : MonoBehaviour
 		else {
 			counterWallJump -= Time.deltaTime;
 		}
-		
 		//acutally jumping
-		if(Input.GetButtonDown("Jump") && counterWallJump > 0f) { 
+		if(Input.GetButtonDown("Jump") && counterWallJump > 0f) {
+            Debug.Log("jumpDir " + wallJumpDriection + "  " );
+            inverseflip();
 			isWallJumping = true;
-
-			rb.velocity = new Vector2(wallJumpDriection * wallJumpingPower.x, wallJumpingPower.y);
+			rb.velocity = new Vector2( (-wallJumpDriection) * wallJumpingPower.x, wallJumpingPower.y);
 			counterWallJump = 0f;
-			if (transform.localScale.x != wallJumpDriection)
-			{
-				isFacingRight = !isFacingRight;
-				Vector3 localscale = transform.localScale;
-				localscale.x *= -1f;
-				transform.localScale = localscale;
-			}
 		}
 		//Flip();
 
@@ -196,7 +189,7 @@ public class Player_Movement2 : MonoBehaviour
 			if (isWallsliding)
 			{
 				inverseflip();
-				dir = -dir;
+				//dir = -dir;
 			}
 			isDashing = true;
             mAnimator.SetBool("isDashing", true);
