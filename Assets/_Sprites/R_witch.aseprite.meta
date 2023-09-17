@@ -906,8 +906,8 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 489
-      y: 4
+      x: 4
+      y: 396
       width: 18
       height: 47
     spriteID: deb2072951f4fa24db44a57763aaf420
@@ -918,7 +918,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 489, y: 4}
+    uvTransform: {x: 4, y: 396}
   - name: R_witch_Frame_40
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -1246,9 +1246,9 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 4
-      y: 396
-      width: 18
+      x: 489
+      y: 4
+      width: 19
       height: 47
     spriteID: 2fa071f10d4586c4a8bd3acd3aa475b5
     spriteBone: []
@@ -1258,7 +1258,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 396}
+    uvTransform: {x: 489, y: 4}
   - name: R_witch_Frame_57
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -1921,7 +1921,7 @@ ScriptedImporter:
       cellRect:
         x: 33
         y: 6
-        width: 18
+        width: 19
         height: 47
       spriteId: 2fa071f10d4586c4a8bd3acd3aa475b5
     - name: R_witch_Frame_43
