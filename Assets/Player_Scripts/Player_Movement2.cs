@@ -9,6 +9,7 @@ using UnityEngine.UIElements;
 //https://youtu.be/K1xZ-rycYY8 - Player Movement
 public class Player_Movement2 : MonoBehaviour
 {
+    //HAHA this looks so stupid but necessary 
     public bool moveable = true;
 	private float horizontal;
     public float Speed = 8f;
@@ -55,7 +56,7 @@ public class Player_Movement2 : MonoBehaviour
         // Debug.Log(isWallsliding);   fuck it idk why you can wall jump tech its not saying your sliding while in mid air so idk  guess its a feature
         //gets the raw input of the horizontal input axis (a -1 , d 1)       
         horizontal = Input.GetAxisRaw("Horizontal");
-        Debug.Log(rb.velocity.y);
+        //Debug.Log(rb.velocity.y);
         if (!IsGrounded() && !isWallsliding && !isDashing && rb.velocity.y < 0 && !isFalling)
         {
             isFalling = true;
@@ -73,6 +74,7 @@ public class Player_Movement2 : MonoBehaviour
         {
             horizontal = 0;
         }
+
         //maintaining Dashes
         if (IsGrounded() )
         {

@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour
 	{
 	private Animator animator;
+	Collider2D player; // used to lock the player when dying 
 	[SerializeField] private Rigidbody2D rb; //Player Rigidbody
 	[SerializeField]
 	Vector3 _startPosition;
@@ -23,10 +24,13 @@ public class Player : MonoBehaviour
 	public void KillPlayer()
 	{ 
 		animator.SetBool("isDead", true);
-		Invoke(nameof(murder), 1);
+		gameObject.GetComponent<Player_Movement2>().moveable = false; //Stops the players movement while dying 
+		Invoke(nameof(murder), 1.167f);
+		
 	}
 	private void murder()
 	{
+		gameObject.GetComponent<Player_Movement2>().moveable = true; //gives the player back there movement
 		transform.position = GameManager.Instance.StartPosition; //sends the player back to the last updated checkpoint/startpositon 
 		animator.SetBool("isDead", false);
 	}
