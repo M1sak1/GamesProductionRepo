@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
 	{ 
 		animator.SetBool("isDead", true);
 		gameObject.GetComponent<Player_Movement2>().moveable = false; //Stops the players movement while dying 
-		Invoke(nameof(murder), 1.167f);
+		Invoke(nameof(murder), 1f);
 		
 	}
 	private void murder()

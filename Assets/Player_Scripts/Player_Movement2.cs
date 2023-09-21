@@ -64,7 +64,7 @@ public class Player_Movement2 : MonoBehaviour
 		}
         else
         {
-            if (isFalling && IsGrounded())
+            if (isFalling && IsGrounded() || isFalling && IsWalled())
             {
                 isFalling = false;
                 mAnimator.SetBool("isFalling", false);
@@ -134,17 +134,6 @@ public class Player_Movement2 : MonoBehaviour
         }
     }
     //dangerious 
-	private void inverseflip()
-	{
-		if (isFacingRight && horizontal > 0f || !isFacingRight && horizontal < 0f)
-		{
-			isFacingRight = !isFacingRight;
-			//physically flips the sprite
-			Vector3 localScale = transform.localScale;
-			localScale.x *= -1f;
-			transform.localScale = localScale;
-		}
-	}
 
 	private bool IsWalled()
     {
@@ -155,7 +144,7 @@ public class Player_Movement2 : MonoBehaviour
     {
         if(IsWalled() && !IsGrounded() && horizontal !=0f)
         {
-            inverseflip();
+            
 		   //wallsiding
 			mAnimator.SetBool("walled", true);
 			isWallsliding = true;
@@ -167,7 +156,6 @@ public class Player_Movement2 : MonoBehaviour
             {
 				mAnimator.SetBool("walled", false);
                 isWallsliding = false;
-				inverseflip();
 			}
         }
     }
@@ -186,12 +174,10 @@ public class Player_Movement2 : MonoBehaviour
 		//acutally jumping
 		if(Input.GetButtonDown("Jump") && counterWallJump > 0f) {
             Debug.Log("jumpDir " + wallJumpDriection + "  " );
-            inverseflip();
 			isWallJumping = true;
-			rb.velocity = new Vector2( (-wallJumpDriection) * wallJumpingPower.x, wallJumpingPower.y);
+			rb.velocity = new Vector2( wallJumpDriection * wallJumpingPower.x, wallJumpingPower.y);
 			counterWallJump = 0f;
 		}
-		//Flip();
 
 		Invoke(nameof(StopWallJumping), wallJumpDuration); // calls the stop walljumping after a delay (walljumpduration)
 	}
@@ -203,11 +189,6 @@ public class Player_Movement2 : MonoBehaviour
         if (!isDashing)
         {
             var dir = transform.localScale.x;
-			if (isWallsliding)
-			{
-				inverseflip();
-				//dir = -dir;
-			}
 			isDashing = true;
             mAnimator.SetBool("isDashing", true);
             rb.gravityScale = 0f;
