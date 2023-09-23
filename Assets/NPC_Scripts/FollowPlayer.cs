@@ -4,20 +4,33 @@ using UnityEngine;
 
 public class FollowPlayer : MonoBehaviour
 {
+	public bool Enable = false;
 	public Transform target;
 	public Vector3 offset; //how far it will stay away from the target
-	[Range(1, 10)]
+	[Range(1, 200)]
 	public float SmoothFactor;
+
     // Update is called once per frame
     void FixedUpdate()
     {
-		Follow();
+		if (Enable)
+        {
+			Follow();
+		}
+        
 	}
 
 	void Follow()
 	{
-		Vector3 targetPosition = target.position + offset;
-		Vector3 smoothPosition = Vector3.Lerp(transform.position, targetPosition, SmoothFactor*Time.fixedDeltaTime);
-		transform.position = targetPosition;
+		//https://docs.unity3d.com/ScriptReference/Vector3.Lerp.html
+			Vector3 targetPosition = target.position + offset;
+			Vector3 smoothPosition = Vector3.Lerp(transform.position, targetPosition, SmoothFactor * Time.fixedDeltaTime);
+			transform.position = smoothPosition;
+		
+	}
+
+	public void SetEnable()
+	{
+		Enable = true;
 	}
 }
