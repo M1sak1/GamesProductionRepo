@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//https://docs.unity3d.com/Packages/com.unity.ai.navigation@1.1/manual/index.html
 public class FollowPlayer : MonoBehaviour
 {
 	public bool Enable = false;
