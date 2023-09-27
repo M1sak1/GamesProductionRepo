@@ -121,15 +121,15 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: trees in the bg
     originalName: 
-    pivot: {x: 0.5, y: 0.6666667}
+    pivot: {x: 0.5, y: 0.6497462}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 256
-      height: 384
+      width: 515
+      height: 394
     spriteID: acc4c9dcab8257b4898c643f8a716608
     spriteBone: []
     spriteOutline: []
@@ -139,6 +139,26 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
+  - name: trees in the bg_Frame_1
+    originalName: 
+    pivot: {x: 0.33290154, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 406
+      width: 386
+      height: 512
+    spriteID: 3c009b091d9c64c4799cf606a21d32f4
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 406}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
@@ -148,14 +168,22 @@ ScriptedImporter:
     layerType: 0
     blendMode: 0
     cells:
-    - name: trees in the bg
+    - name: trees in the bg_Frame_0
       frameIndex: 0
       cellRect:
         x: 0
         y: 0
-        width: 256
-        height: 384
+        width: 515
+        height: 394
       spriteId: acc4c9dcab8257b4898c643f8a716608
+    - name: trees in the bg_Frame_1
+      frameIndex: 1
+      cellRect:
+        x: 129
+        y: 0
+        width: 386
+        height: 512
+      spriteId: 3c009b091d9c64c4799cf606a21d32f4
     linkedCells: []
     parentIndex: -1
   platformSettings:
@@ -197,4 +225,4 @@ ScriptedImporter:
     androidETC2FallbackOverride: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 256, y: 512}
+  canvasSize: {x: 515, y: 512}
