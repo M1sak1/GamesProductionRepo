@@ -159,6 +159,26 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 527, y: 4}
+  - name: trees in the bg_Frame_2
+    originalName: 
+    pivot: {x: 0.18926555, y: 0.591224}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 527
+      y: 524
+      width: 177
+      height: 433
+    spriteID: b3fcc6e89c1ca5c488ec3108c070e846
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 527, y: 524}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
@@ -184,6 +204,14 @@ ScriptedImporter:
         width: 386
         height: 512
       spriteId: 3c009b091d9c64c4799cf606a21d32f4
+    - name: trees in the bg_Frame_2
+      frameIndex: 2
+      cellRect:
+        x: 224
+        y: 0
+        width: 177
+        height: 433
+      spriteId: b3fcc6e89c1ca5c488ec3108c070e846
     linkedCells: []
     parentIndex: -1
   platformSettings:
