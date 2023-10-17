@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.PlasticSCM.Editor.WebApi;
@@ -25,3 +26,4 @@ public class NextLevel : MonoBehaviour
         SceneManager.LoadScene(NextLevel);
 	}
 }
+ 
