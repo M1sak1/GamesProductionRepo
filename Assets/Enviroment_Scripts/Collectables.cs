@@ -8,9 +8,8 @@ public class Collectables : MonoBehaviour
 {
     private int Collected = 0;
     public TMP_Text PumpkinText;
-    // Start is called before the first frame update
 
-    // Update is called once per frame
+    //https://www.youtube.com/watch?v=_RIsfVOqTaE&ab_channel=Blackthornprod
     void Update()
     {
         PumpkinText.text = "Collectables: " + Collected + " / "+ 1;
