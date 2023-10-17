@@ -7,7 +7,7 @@ using UnityEngine;
 public class CollectPumpkin : MonoBehaviour
 {
     [SerializeField] private ParticleSystem CollectEffect;
-
+    [SerializeField] private GameObject UIUpdate;
     // Start is called before the first frame update
 
     // Update is called once per frame
@@ -20,6 +20,8 @@ public class CollectPumpkin : MonoBehaviour
         }
 
         Destroy(gameObject);
+        UIUpdate.gameObject.GetComponent<Collectables>().CollectedPumpkin();
+
         //trigger UI update
     }
 }
