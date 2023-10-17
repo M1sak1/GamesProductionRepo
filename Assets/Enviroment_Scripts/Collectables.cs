@@ -18,6 +18,6 @@ public class Collectables : MonoBehaviour
     }
     public void CollectedPumpkin()
     {
-        Collected++;
+        Collected = 1;
     }
 }
