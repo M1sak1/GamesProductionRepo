@@ -95,7 +95,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638330191568837192
+  platformSettingsDirtyTick: 638332359515096547
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -126,8 +126,8 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 4
-      y: 146
+      x: 75
+      y: 75
       width: 63
       height: 62
     spriteID: b77850508c724494fb9abff5640f4a20
@@ -138,7 +138,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 146}
+    uvTransform: {x: 75, y: 75}
   - name: RoofTiles_Frame_5
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -179,6 +179,46 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 75}
+  - name: RoofTiles_Frame_7
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 146
+      width: 63
+      height: 63
+    spriteID: fcea40f304775c84498e80f5a49fa49b
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 146}
+  - name: RoofTiles_Frame_8
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 75
+      y: 4
+      width: 63
+      height: 63
+    spriteID: 4fecc4c04eb2297408e401aaaa428e24
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 75, y: 4}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
@@ -212,6 +252,22 @@ ScriptedImporter:
         width: 63
         height: 63
       spriteId: 6e240ecd72f8e824a9292492233b570d
+    - name: RoofTiles_Frame_7
+      frameIndex: 7
+      cellRect:
+        x: 0
+        y: 0
+        width: 63
+        height: 63
+      spriteId: fcea40f304775c84498e80f5a49fa49b
+    - name: RoofTiles_Frame_8
+      frameIndex: 8
+      cellRect:
+        x: 0
+        y: 0
+        width: 63
+        height: 63
+      spriteId: 4fecc4c04eb2297408e401aaaa428e24
     linkedCells: []
     parentIndex: -1
   platformSettings:

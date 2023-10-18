@@ -14,14 +14,15 @@ public class Player_Movement2 : MonoBehaviour
 	private float horizontal;
     public float Speed = 8f;
     public float jumpingPower = 6f;
-    private bool isFacingRight = true;
+    public bool isFacingRight = true;
     public float gravity = 3f;
     public bool isFalling = false;
 	//wallsliding mgmt
-    private bool isWallsliding = false;
+    public bool isWallsliding = false;
     public float wallslidingSpeed = 2f;
 	//walljumping mgmt
-	private bool isWallJumping = false;
+	public bool isWallJumping = false;
+    public float walljumpCD = 0.5f;
 	public float wallJumpDriection = 0.2f;
 	public float counterWallJump = 4;
 	public float wallJumpDuration = 0.4f;
@@ -106,10 +107,7 @@ public class Player_Movement2 : MonoBehaviour
             DashCounter--;
             DashPrime();
         }
-		if (!isWallJumping && !isWallsliding && !isDashing)
-        {
-            Flip();
-        }
+        Flip();
         WallSlide(); //checks if wallsliding
         WallJump(); //allows for walljumping
     }
@@ -144,8 +142,8 @@ public class Player_Movement2 : MonoBehaviour
     {
         if(IsWalled() && !IsGrounded() && horizontal !=0f)
         {
-            
-		   //wallsiding
+			//wallJumpDriection = -transform.localScale.x;
+			//wallsiding
 			mAnimator.SetBool("walled", true);
 			isWallsliding = true;
             rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallslidingSpeed, float.MaxValue));
@@ -171,18 +169,20 @@ public class Player_Movement2 : MonoBehaviour
 		else {
 			counterWallJump -= Time.deltaTime;
 		}
-		//acutally jumping
-		if(Input.GetButtonDown("Jump") && counterWallJump > 0f) {
+        //acutally jumping
+        if (Input.GetButtonDown("Jump") && counterWallJump > 0f && isWallsliding) {
             Debug.Log("jumpDir " + wallJumpDriection + "  " );
 			isWallJumping = true;
 			rb.velocity = new Vector2( wallJumpDriection * wallJumpingPower.x, wallJumpingPower.y);
 			counterWallJump = 0f;
+            Flip();
 		}
 
 		Invoke(nameof(StopWallJumping), wallJumpDuration); // calls the stop walljumping after a delay (walljumpduration)
 	}
 	private void StopWallJumping(){
 		isWallJumping = false;
+        //wallJumpDriection = -transform.localScale.x;
 	}
 	private void DashPrime()
 	{
