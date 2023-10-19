@@ -33,6 +33,7 @@ public class Player : MonoBehaviour
 		gameObject.GetComponent<Player_Movement2>().moveable = true; //gives the player back there movement
 		transform.position = GameManager.Instance.StartPosition; //sends the player back to the last updated checkpoint/startpositon 
 		animator.SetBool("isDead", false);
+		gameObject.GetComponent<Player_Movement2>().revie();
 	}
 	public void playWin()
 	{

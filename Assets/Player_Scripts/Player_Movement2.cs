@@ -11,6 +11,7 @@ public class Player_Movement2 : MonoBehaviour
 {
     //HAHA this looks so stupid but necessary 
     public bool moveable = true;
+    private RigidbodyConstraints2D storedConstraints;
 	private float horizontal;
     public float Speed = 8f;
     public float jumpingPower = 6f;
@@ -47,6 +48,7 @@ public class Player_Movement2 : MonoBehaviour
 
     private void Start()
     {
+        storedConstraints = rb.constraints;//saving the constraints
         maxDashes = DashCounter;    //setting the maximum amount of dashes per jump for the player
 		mAnimator = GetComponent<Animator>(); //used for the animations
         mSpriteRend = GetComponent<SpriteRenderer>(); //only touch this in verry spesific cases. !!!
@@ -54,6 +56,10 @@ public class Player_Movement2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!moveable)
+        {
+            rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;
+        }
         // Debug.Log(isWallsliding);   fuck it idk why you can wall jump tech its not saying your sliding while in mid air so idk  guess its a feature
         //gets the raw input of the horizontal input axis (a -1 , d 1)       
         horizontal = Input.GetAxisRaw("Horizontal");
@@ -71,10 +77,6 @@ public class Player_Movement2 : MonoBehaviour
                 mAnimator.SetBool("isFalling", false);
             }
         }
-        if(moveable == false)
-        {
-            horizontal = 0;
-        }
 
         //maintaining Dashes
         if (IsGrounded() )
@@ -90,18 +92,6 @@ public class Player_Movement2 : MonoBehaviour
         {
             mAnimator.SetBool("Moving", true);
         }
-        //How the player jumps 
-        if (Input.GetButtonDown("Jump") && IsGrounded() && !isDashing)
-        {
-            //takes the rigidbodys velocity and changes it based on the current velocity and the paramater jumping power 
-            rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
-        }
-        //to create a smaller jump if the button is released 
-        if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f && !isDashing)
-        {
-            //as this is meant to decrease the jumping power its timed by a half
-            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
-        }
         if (Input.GetButtonDown("Fire1") && !isDashing && DashCounter > 0)
 		{
             DashCounter--;
@@ -109,7 +99,21 @@ public class Player_Movement2 : MonoBehaviour
         }
         Flip();
         WallSlide(); //checks if wallsliding
-        WallJump(); //allows for walljumping
+
+		//handling jumps
+		//How the player jumps 
+		if (Input.GetButtonDown("Jump") && IsGrounded() && !isDashing && !isWallsliding)
+		{
+			//takes the rigidbodys velocity and changes it based on the current velocity and the paramater jumping power 
+			rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
+		}
+		//to create a smaller jump if the button is released 
+		if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f && !isDashing && !isWallsliding)
+		{
+			//as this is meant to decrease the jumping power its timed by a half
+			rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+		}
+		WallJump(); //allows for walljumping
     }
     //Runs every time something changes not on every frame
     void FixedUpdate()
@@ -117,6 +121,11 @@ public class Player_Movement2 : MonoBehaviour
 		if(!isWallJumping && !isDashing){
 			rb.velocity = new Vector2(horizontal * Speed, rb.velocity.y);
 		}
+    }
+    //revives the player, in otherword makes the able to move.
+    public void revie()
+    {
+        rb.constraints = storedConstraints; 
     }
     //Used to flip the players sprite when moving left or right
     private void Flip()
@@ -150,17 +159,14 @@ public class Player_Movement2 : MonoBehaviour
         }
         else
         {
-            if (IsGrounded() && isWallsliding || !IsWalled() && isWallsliding)
-            {
-				mAnimator.SetBool("walled", false);
-                isWallsliding = false;
-			}
+			mAnimator.SetBool("walled", false);
+            isWallsliding = false;
         }
     }
 
 	private void WallJump(){
-        //checking if it is possible
-        if (isWallsliding && !isWallJumping){
+        //checking if it is possible, there are a couple of redundancies in here
+        if (isWallsliding && !isWallJumping && !IsGrounded() && IsWalled()){
 			isWallJumping = false;
 			wallJumpDriection = -transform.localScale.x;
 			counterWallJump = wallJumpDuration;
