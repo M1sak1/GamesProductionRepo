@@ -77,9 +77,11 @@ public class Player_Movement2 : MonoBehaviour
                 mAnimator.SetBool("isFalling", false);
             }
         }
+		WallSlide(); //checks if wallsliding
+		WallJump(); //allows for walljumping
 
-        //maintaining Dashes
-        if (IsGrounded() )
+		//maintaining Dashes
+		if (IsGrounded() )
         {
             DashCounter = maxDashes;
         }
@@ -97,9 +99,10 @@ public class Player_Movement2 : MonoBehaviour
             DashCounter--;
             DashPrime();
         }
-        Flip();
-        WallSlide(); //checks if wallsliding
-
+        if (!isWallsliding)
+        {
+			Flip();
+		}
 		//handling jumps
 		//How the player jumps 
 		if (Input.GetButtonDown("Jump") && IsGrounded() && !isDashing && !isWallsliding)
@@ -113,7 +116,6 @@ public class Player_Movement2 : MonoBehaviour
 			//as this is meant to decrease the jumping power its timed by a half
 			rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
 		}
-		WallJump(); //allows for walljumping
     }
     //Runs every time something changes not on every frame
     void FixedUpdate()
@@ -130,14 +132,17 @@ public class Player_Movement2 : MonoBehaviour
     //Used to flip the players sprite when moving left or right
     private void Flip()
     {
-        //checks if they have changed their movement and need to be flipped
-        if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f) 
+        if (!isWallsliding && !isDashing)
         {
-            isFacingRight = !isFacingRight;
-            //physically flips the sprite
-            Vector3 localScale = transform.localScale;
-            localScale.x *= -1f;
-            transform.localScale = localScale;
+            //checks if they have changed their movement and need to be flipped
+            if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
+            {
+                isFacingRight = !isFacingRight;
+                //physically flips the sprite
+                Vector3 localScale = transform.localScale;
+                localScale.x *= -1f;
+                transform.localScale = localScale;
+            }
         }
     }
     //dangerious 
@@ -151,8 +156,18 @@ public class Player_Movement2 : MonoBehaviour
     {
         if(IsWalled() && !IsGrounded() && horizontal !=0f)
         {
-			//wallJumpDriection = -transform.localScale.x;
-			//wallsiding
+            //kicking the player out of a dash
+            if(isDashing)
+            {
+                DashExit();
+            }
+            //wallJumpDriection = -transform.localScale.x;
+            //wallsiding
+            //locking the walljump direction.
+            if (!isWallsliding)
+            {
+				wallJumpDriection = -transform.localScale.x;
+			}
 			mAnimator.SetBool("walled", true);
 			isWallsliding = true;
             rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallslidingSpeed, float.MaxValue));
@@ -160,15 +175,18 @@ public class Player_Movement2 : MonoBehaviour
         else
         {
 			mAnimator.SetBool("walled", false);
-            isWallsliding = false;
+            Invoke(nameof(wallslideStop), 0.1f);
         }
     }
+	private void wallslideStop()
+	{
+		isWallsliding = false;
+	}
 
 	private void WallJump(){
         //checking if it is possible, there are a couple of redundancies in here
         if (isWallsliding && !isWallJumping && !IsGrounded() && IsWalled()){
 			isWallJumping = false;
-			wallJumpDriection = -transform.localScale.x;
 			counterWallJump = wallJumpDuration;
 			CancelInvoke(nameof(StopWallJumping));
 		}
@@ -199,6 +217,10 @@ public class Player_Movement2 : MonoBehaviour
             mAnimator.SetBool("isDashing", true);
             rb.gravityScale = 0f;
             Debug.Log("Starting a dash");
+            if (IsWalled())
+            {
+                dir = -dir;
+            }
             rb.velocity = new Vector2(dir * DashPower, 0); // the dash itself
             Invoke(nameof(DashExit), DashDuration + 0.2f);
         }
