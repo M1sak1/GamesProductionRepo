@@ -105,7 +105,7 @@ public class Player_Movement2 : MonoBehaviour
 		}
 		//handling jumps
 		//How the player jumps 
-		if (Input.GetButtonDown("Jump") && IsGrounded() && !isDashing && !isWallsliding)
+		if (Input.GetButtonDown("Jump") && IsGrounded() && !isDashing && !isWallsliding && !isFalling)
 		{
 			//takes the rigidbodys velocity and changes it based on the current velocity and the paramater jumping power 
 			rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
