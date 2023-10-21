@@ -13,15 +13,11 @@ public class CollectPumpkin : MonoBehaviour
     // Update is called once per frame
     public void OnTriggerEnter2D(Collider2D other)
     {
-        CollectEffect.Stop();
-        if (CollectEffect.isStopped)
-        {
-            CollectEffect.Play();
-        }
-
-        Destroy(gameObject);
+        gameObject.GetComponent<CircleCollider2D>().isTrigger = false;
+        //agameObject.GetComponent<FollowPlayer>().SetEnable();
+        CollectEffect.Play();
         UIUpdate.gameObject.GetComponent<Collectables>().CollectedPumpkin();
-
+        PickupsCollected.Instance.Set(1);
         //trigger UI update
     }
 }
