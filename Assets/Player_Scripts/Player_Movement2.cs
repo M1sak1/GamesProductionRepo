@@ -18,22 +18,23 @@ public class Player_Movement2 : MonoBehaviour
     public bool isFacingRight = true;
     public float gravity = 3f;
     public bool isFalling = false;
+    public bool AllowedToDash = false;
 	//wallsliding mgmt
-    public bool isWallsliding = false;
+    private bool isWallsliding = false;
     public float wallslidingSpeed = 2f;
 	//walljumping mgmt
-	public bool isWallJumping = false;
+	private bool isWallJumping = false;
     public float walljumpCD = 0.5f;
-	public float wallJumpDriection = 0.2f;
+	private float wallJumpDriection = 0.2f;
 	public float counterWallJump = 4;
 	public float wallJumpDuration = 0.4f;
 	public Vector2 wallJumpingPower = new Vector2 (8f, 16f);
     //Dashing
     public float DashPower = 10;
     public float DashDuration = 0.5f;
-    public bool isDashing = false;
+    private bool isDashing = false;
     public int DashCounter = 1;
-    public int maxDashes;
+    private int maxDashes;
 
 
 
@@ -210,7 +211,7 @@ public class Player_Movement2 : MonoBehaviour
 	}
 	private void DashPrime()
 	{
-        if (!isDashing)
+        if (!isDashing && AllowedToDash)
         {
             var dir = transform.localScale.x;
 			isDashing = true;

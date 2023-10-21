@@ -14,12 +14,10 @@ public class NextLevel : MonoBehaviour
 	{
 		int CurrentLevel = SceneManager.GetActiveScene().buildIndex + 1;
 		player = other;
-		if (CurrentLevel != 3)
-		{
-			other.gameObject.GetComponent<Player_Movement2>().moveable = false;
-		}
-        other.gameObject.GetComponent<Player>().playWin();
-        animator.SetTrigger("FadeOut");
+		other.gameObject.GetComponent<Player_Movement2>().moveable = false;
+		other.gameObject.GetComponent<Player>().playWin();
+
+		animator.SetTrigger("FadeOut");
         Invoke(nameof(finishwin), 0.6f);
 	}
     //Fade stuff and mading this code re-usable https://www.youtube.com/watch?v=Oadq-IrOazg&ab_channel=Brackeys
