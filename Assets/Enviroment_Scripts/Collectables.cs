@@ -18,6 +18,10 @@ public class Collectables : MonoBehaviour
     public void CollectedPumpkin()
     {
         Collected = 1;
-        PickupsCollected.Instance.Set(Collected);
+        
+    }
+    public int GetCollected()
+    {
+        return Collected;
     }
 }
