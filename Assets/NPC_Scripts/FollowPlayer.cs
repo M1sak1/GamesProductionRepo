@@ -27,8 +27,8 @@ public class FollowPlayer : MonoBehaviour
 		Vector3 targetPosition = target.position + offset;
 		Vector3 smoothPosition = Vector3.Lerp(transform.position, targetPosition, SmoothFactor * Time.fixedDeltaTime);
 		transform.position = smoothPosition;
-		Debug.Log(targetPosition);
-        Debug.Log(smoothPosition);
+		//Debug.Log(targetPosition);
+        //Debug.Log(smoothPosition);
     }
 
 	public void SetEnable()
