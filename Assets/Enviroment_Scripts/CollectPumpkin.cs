@@ -17,7 +17,7 @@ public class CollectPumpkin : MonoBehaviour
         //agameObject.GetComponent<FollowPlayer>().SetEnable();
         CollectEffect.Play();
         UIUpdate.gameObject.GetComponent<Collectables>().CollectedPumpkin();
-
+        PickupsCollected.Instance.Set(1);
         //trigger UI update
     }
 }

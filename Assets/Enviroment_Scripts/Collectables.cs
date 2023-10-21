@@ -20,8 +20,4 @@ public class Collectables : MonoBehaviour
         Collected = 1;
         
     }
-    public int GetCollected()
-    {
-        return Collected;
-    }
 }
