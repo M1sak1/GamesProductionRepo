@@ -12,7 +12,7 @@ public class FollowPlayer : MonoBehaviour
 	public float SmoothFactor;
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
 		if (Enable)
         {
@@ -24,11 +24,12 @@ public class FollowPlayer : MonoBehaviour
 	void Follow()
 	{
 		//https://docs.unity3d.com/ScriptReference/Vector3.Lerp.html
-			Vector3 targetPosition = target.position + offset;
-			Vector3 smoothPosition = Vector3.Lerp(transform.position, targetPosition, SmoothFactor * Time.fixedDeltaTime);
-			transform.position = smoothPosition;
-		
-	}
+		Vector3 targetPosition = target.position + offset;
+		Vector3 smoothPosition = Vector3.Lerp(transform.position, targetPosition, SmoothFactor * Time.fixedDeltaTime);
+		transform.position = smoothPosition;
+		Debug.Log(targetPosition);
+        Debug.Log(smoothPosition);
+    }
 
 	public void SetEnable()
 	{
