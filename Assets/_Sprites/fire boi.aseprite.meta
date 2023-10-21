@@ -95,7 +95,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 0
+  platformSettingsDirtyTick: 638335380545872154
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -121,15 +121,15 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: fire boi_Frame_0
     originalName: 
-    pivot: {x: 1, y: 0}
-    alignment: 9
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
-      y: 4
-      width: 12
-      height: 15
+      y: 100
+      width: 14
+      height: 16
     spriteID: eebccbf2a7cabec48a199e46bac2acba
     spriteBone: []
     spriteOutline: []
@@ -138,19 +138,59 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 4}
+    uvTransform: {x: 4, y: 100}
   - name: fire boi_Frame_1
     originalName: 
-    pivot: {x: 1, y: 0}
-    alignment: 9
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 17
+      height: 15
+    spriteID: 05df471e1ac893846b5ca8c987c14fb2
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 4}
+  - name: fire boi_Frame_2
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 29
+      y: 4
+      width: 16
+      height: 14
+    spriteID: 7d77ca5983468d04987acb34924722ea
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 29, y: 4}
+  - name: fire boi_Frame_3
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 27
-      width: 12
-      height: 15
-    spriteID: 0cc865eaca4bf0b489021660bf74d08a
+      width: 15
+      height: 17
+    spriteID: 38794ed9a3c2fd240a51e16e4c94721a
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -159,6 +199,86 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 27}
+  - name: fire boi_Frame_4
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 29
+      y: 26
+      width: 14
+      height: 16
+    spriteID: 98e1906f0d5357a43a4bcfe561efed7d
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 29, y: 26}
+  - name: fire boi_Frame_5
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 52
+      width: 17
+      height: 15
+    spriteID: 23c297e39bc627b45bc5494bca18e6ac
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 52}
+  - name: fire boi_Frame_6
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 29
+      y: 50
+      width: 16
+      height: 14
+    spriteID: ad2ef47e1a68f5749939f3311cdc918c
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 29, y: 50}
+  - name: fire boi_Frame_7
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 75
+      width: 14
+      height: 17
+    spriteID: beedb3d50db39e84ca20146853967c03
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 75}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
@@ -171,22 +291,106 @@ ScriptedImporter:
     - name: fire boi_Frame_0
       frameIndex: 0
       cellRect:
-        x: 12
-        y: 0
-        width: 12
-        height: 15
+        x: 16
+        y: 16
+        width: 14
+        height: 16
       spriteId: eebccbf2a7cabec48a199e46bac2acba
     - name: fire boi_Frame_1
       frameIndex: 1
       cellRect:
-        x: 12
-        y: 0
-        width: 12
+        x: 14
+        y: 17
+        width: 17
         height: 15
-      spriteId: 0cc865eaca4bf0b489021660bf74d08a
+      spriteId: 05df471e1ac893846b5ca8c987c14fb2
+    - name: fire boi_Frame_2
+      frameIndex: 2
+      cellRect:
+        x: 15
+        y: 18
+        width: 16
+        height: 14
+      spriteId: 7d77ca5983468d04987acb34924722ea
+    - name: fire boi_Frame_3
+      frameIndex: 3
+      cellRect:
+        x: 15
+        y: 17
+        width: 15
+        height: 17
+      spriteId: 38794ed9a3c2fd240a51e16e4c94721a
+    - name: fire boi_Frame_4
+      frameIndex: 4
+      cellRect:
+        x: 16
+        y: 17
+        width: 14
+        height: 16
+      spriteId: 98e1906f0d5357a43a4bcfe561efed7d
+    - name: fire boi_Frame_5
+      frameIndex: 5
+      cellRect:
+        x: 14
+        y: 18
+        width: 17
+        height: 15
+      spriteId: 23c297e39bc627b45bc5494bca18e6ac
+    - name: fire boi_Frame_6
+      frameIndex: 6
+      cellRect:
+        x: 14
+        y: 18
+        width: 16
+        height: 14
+      spriteId: ad2ef47e1a68f5749939f3311cdc918c
+    - name: fire boi_Frame_7
+      frameIndex: 7
+      cellRect:
+        x: 15
+        y: 17
+        width: 14
+        height: 17
+      spriteId: beedb3d50db39e84ca20146853967c03
     linkedCells: []
     parentIndex: -1
-  platformSettings: []
+  platformSettings:
+  - name: DefaultTexturePlatform
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: Standalone
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: Server
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 48, y: 48}

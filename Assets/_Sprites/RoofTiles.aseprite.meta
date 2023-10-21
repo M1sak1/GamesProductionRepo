@@ -228,40 +228,40 @@ ScriptedImporter:
     layerType: 0
     blendMode: 0
     cells:
-    - name: RoofTiles_Frame_4
-      frameIndex: 4
+    - name: RoofTiles_Frame_0
+      frameIndex: 0
       cellRect:
         x: 0
         y: 0
         width: 63
         height: 62
       spriteId: b77850508c724494fb9abff5640f4a20
-    - name: RoofTiles_Frame_5
-      frameIndex: 5
+    - name: RoofTiles_Frame_1
+      frameIndex: 1
       cellRect:
         x: 0
         y: 0
         width: 63
         height: 63
       spriteId: e2979ee1b993c434baad6df1cf749f27
-    - name: RoofTiles_Frame_6
-      frameIndex: 6
+    - name: RoofTiles_Frame_2
+      frameIndex: 2
       cellRect:
         x: 0
         y: 0
         width: 63
         height: 63
       spriteId: 6e240ecd72f8e824a9292492233b570d
-    - name: RoofTiles_Frame_7
-      frameIndex: 7
+    - name: RoofTiles_Frame_3
+      frameIndex: 3
       cellRect:
         x: 0
         y: 0
         width: 63
         height: 63
       spriteId: fcea40f304775c84498e80f5a49fa49b
-    - name: RoofTiles_Frame_8
-      frameIndex: 8
+    - name: RoofTiles_Frame_4
+      frameIndex: 4
       cellRect:
         x: 0
         y: 0
