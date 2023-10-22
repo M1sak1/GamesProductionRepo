@@ -139,6 +139,26 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
+  - name: textBox_Frame_1
+    originalName: 
+    pivot: {x: 0.5, y: -0.369863}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 85
+      width: 122
+      height: 73
+    spriteID: 65458c612c4bbfe478a5f268a5d32325
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 85}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
@@ -148,7 +168,7 @@ ScriptedImporter:
     layerType: 0
     blendMode: 0
     cells:
-    - name: textBox
+    - name: textBox_Frame_0
       frameIndex: 0
       cellRect:
         x: 1
@@ -156,6 +176,14 @@ ScriptedImporter:
         width: 122
         height: 73
       spriteId: f9070494b1ab9a3449f3ed8c7d0ed0dc
+    - name: textBox_Frame_1
+      frameIndex: 1
+      cellRect:
+        x: 1
+        y: 27
+        width: 122
+        height: 73
+      spriteId: 65458c612c4bbfe478a5f268a5d32325
     linkedCells: []
     parentIndex: -1
   platformSettings: []
