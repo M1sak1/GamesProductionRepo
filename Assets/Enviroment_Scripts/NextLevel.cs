@@ -14,7 +14,10 @@ public class NextLevel : MonoBehaviour
 	{
 		int CurrentLevel = SceneManager.GetActiveScene().buildIndex + 1;
 		player = other;
-		other.gameObject.GetComponent<Player_Movement2>().moveable = false;
+		if (CurrentLevel != 3)
+		{
+			other.gameObject.GetComponent<Player_Movement2>().moveable = false;
+		}
 		other.gameObject.GetComponent<Player>().playWin();
 
 		animator.SetTrigger("FadeOut");

@@ -20,4 +20,5 @@ public class Collectables : MonoBehaviour
         Collected = 1;
         
     }
+
 }

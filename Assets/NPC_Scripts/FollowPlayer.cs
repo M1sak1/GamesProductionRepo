@@ -24,6 +24,10 @@ public class FollowPlayer : MonoBehaviour
 	void Follow()
 	{
 		//https://docs.unity3d.com/ScriptReference/Vector3.Lerp.html
+		if (!target.gameObject.GetComponent<Player_Movement2>().isFacingRight)
+		{
+			offset = -offset;
+		}
 		Vector3 targetPosition = target.position + offset;
 		Vector3 smoothPosition = Vector3.Lerp(transform.position, targetPosition, SmoothFactor * Time.fixedDeltaTime);
 		transform.position = smoothPosition;

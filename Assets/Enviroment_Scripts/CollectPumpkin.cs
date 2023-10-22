@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class CollectPumpkin : MonoBehaviour
 {
@@ -13,12 +14,11 @@ public class CollectPumpkin : MonoBehaviour
     // Update is called once per frame
     public void OnTriggerEnter2D(Collider2D other)
     {
-		CollectEffect.Stop();
-		if (CollectEffect.isStopped)
-		{
-			CollectEffect.Play();
-		}
-		Destroy(gameObject);
-		UIUpdate.gameObject.GetComponent<Collectables>().CollectedPumpkin();
+        gameObject.GetComponent<CircleCollider2D>().isTrigger = false;
+        CollectEffect.Play();
+        UIUpdate.gameObject.GetComponent<Collectables>().CollectedPumpkin();
+        gameObject.GetComponent<Light2D>().intensity *= 1.5f;
+        PickupsCollected.Instance.Set(1);
 	}
 }
+
