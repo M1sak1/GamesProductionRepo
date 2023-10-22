@@ -5,7 +5,7 @@ using UnityEngine;
 public class TextBoxTrigger : MonoBehaviour
 {
     [SerializeField] private Animation Fade;
-
+    //https://forum.unity.com/threads/animation-rewind-not-working.4756/
     // Start is called before the first frame update
     private void OnTriggerEnter2D(Collider2D other) //detects if the player has hit this invisible block and changes the scene to the winScreen as the player has won 
     {
