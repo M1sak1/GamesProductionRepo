@@ -26,7 +26,6 @@ public class FollowPlayer : MonoBehaviour
 		//https://docs.unity3d.com/ScriptReference/Vector3.Lerp.html
 		if (target.gameObject.GetComponent<Player_Movement2>().isFacingRight)
 		{
-			Debug.Log("Detecting rightness");
 			if (offset.x < 0)
 			{
 				offset.x = -offset.x;
@@ -34,7 +33,6 @@ public class FollowPlayer : MonoBehaviour
 		}
         if (!target.gameObject.GetComponent<Player_Movement2>().isFacingRight)
         {
-            Debug.Log("Detecting non-rightness");
             if (offset.x > 0)
             {
                 offset.x = -offset.x;
