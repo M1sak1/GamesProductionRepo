@@ -24,12 +24,24 @@ public class FollowPlayer : MonoBehaviour
 	void Follow()
 	{
 		//https://docs.unity3d.com/ScriptReference/Vector3.Lerp.html
-		if (!target.gameObject.GetComponent<Player_Movement2>().isFacingRight)
+		if (target.gameObject.GetComponent<Player_Movement2>().isFacingRight)
 		{
-			offset = -offset;
+			Debug.Log("Detecting rightness");
+			if (offset.x < 0)
+			{
+				offset.x = -offset.x;
+			}
 		}
-		Vector3 targetPosition = target.position + offset;
-		Vector3 smoothPosition = Vector3.Lerp(transform.position, targetPosition, SmoothFactor * Time.fixedDeltaTime);
+        if (!target.gameObject.GetComponent<Player_Movement2>().isFacingRight)
+        {
+            Debug.Log("Detecting non-rightness");
+            if (offset.x > 0)
+            {
+                offset.x = -offset.x;
+            }
+        }
+        Vector3 targetPosition = target.position + offset;
+		Vector3 smoothPosition = Vector3.Lerp(transform.position, targetPosition, SmoothFactor * Time.fixedDeltaTime * 0.2f);
 		transform.position = smoothPosition;
 		//Debug.Log(targetPosition);
         //Debug.Log(smoothPosition);
